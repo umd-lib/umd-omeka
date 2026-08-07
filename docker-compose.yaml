@@ -1,0 +1,48 @@
+---
+configs:
+  database_ini:
+    content: |
+      user     = ${DB_USER}
+      password = ${DB_PASSWORD}
+      dbname   = ${DB_NAME}
+      host     = ${DB_HOST}
+      port     = ${DB_PORT:-3306}
+services:
+  mariadb:
+    image: mariadb:lts
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+      - MYSQL_DATABASE=${DB_NAME}
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - mariadb_data:/var/lib/mysql
+
+  omeka-s:
+    image: docker.lib.umd.edu/umd-omeka-s:latest
+    build:
+      context: .
+    restart: unless-stopped
+    configs:
+      - source: database_ini
+        target: /var/www/html/config/database.ini
+        uid: "100"
+        gid: "101"
+        mode: 0440
+    ports:
+      - "8080:8080"
+    volumes:
+      - config:/var/www/html/config
+      - files:/var/www/html/files
+      - logs:/var/www/html/logs
+      - themes:/var/www/html/themes
+    depends_on:
+      - mariadb
+
+volumes:
+  mariadb_data: null
+  config: null
+  files: null
+  logs: null
+  themes: null
