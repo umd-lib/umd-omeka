@@ -53,9 +53,10 @@ WORKDIR /var/www/html
 RUN curl -Z --parallel-immediate -fSL \
     -o omeka-s.zip https://github.com/omeka/omeka-s/releases/download/v4.2.1/omeka-s-4.2.1.zip && \
     unzip -q omeka-s.zip && \
-    mv omeka-s/* . && \
+    mv omeka-s/* . && rm -rf omeka-s \
     rm omeka-s.zip
 
+# Modules
 RUN curl -Z --parallel-immediate -fSL \
       -o Common.zip     https://github.com/Daniel-KM/Omeka-S-module-Common/releases/download/3.4.88/Common-3.4.88.zip \
       -o BulkImport.zip https://github.com/Daniel-KM/Omeka-S-module-Bulkimport/releases/download/3.4.65/BulkImport-3.4.65.zip \
@@ -73,6 +74,26 @@ RUN curl -Z --parallel-immediate -fSL \
          unzip -q "$f" -d "modules"; \
          rm "$f"; \
        done
+
+# Themes
+RUN curl -Z --parallel-immediate -fSL \
+      -o Bookshelf.zip    https://github.com/indic-archive/bookshelf/releases/download/v2.0.1/bookshelf-v2.0.1.zip \
+      -o Centerrow.zip    https://github.com/omeka-s-themes/centerrow/releases/download/v1.8.5/centerrow-1.8.5.zip \
+      -o Cozy.zip         https://github.com/omeka-s-themes/cozy/releases/download/v1.6.3/cozy-1.6.3.zip \
+      -o Foundation.zip   https://github.com/omeka-s-themes/foundation-s/releases/download/v1.5.4/foundation-1.5.4.zip \
+      -o Freedom.zip      https://github.com/omeka-s-themes/freedom/releases/download/v1.1.0/freedom-v1.1.0.zip \
+      -o Lively.zip      https://github.com/omeka-s-themes/lively/releases/download/v1.1.0/lively-v1.1.0.zip \
+      -o Multilingual.zip https://github.com/ivyrze/omeka-s-theme-multilingual/releases/download/2.0/Multilingual.zip \
+      -o Theme-papers.zip https://github.com/omeka-s-themes/papers/releases/download/v1.4.5/theme-papers-v1.4.5.zip \
+      -o Rosenwald-Fund-Collection.zip https://github.com/Fisk-University/Rosenwald-Fund-Collection/releases/download/v3.1.6-prod/Rosenwald-Fund-Collection.zip \
+      -o Theme-thanksroy.zip  https://github.com/omeka-s-themes/thanksroy/releases/download/v1.2.2/theme-thanksroy-v1.2.2.zip \
+      -o TheDaily.zip         https://github.com/omeka-s-themes/thedaily/releases/download/v1.7.1/thedaily-1.7.1.zip \
+    && for f in *.zip; do \
+         name="${f%.zip}"; \
+         unzip -q "$f" -d "themes"; \
+         rm "$f"; \
+       done
+
 
 RUN chown -R nobody:nobody . /run /var/lib/nginx /var/log/nginx
 
