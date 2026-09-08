@@ -69,6 +69,9 @@ RUN curl -Z --parallel-immediate -fSL \
       -o Mirador.zip    https://github.com/Daniel-KM/Omeka-s-module-Mirador/releases/download/3.4.17/Mirador-3.4.17.zip \
       -o Search.zip     https://github.com/biblibre/omeka-s-module-Search/releases/download/v0.22.0/Search-v0.22.0.zip \
       -o Solr.zip       https://github.com/biblibre/omeka-s-module-Solr/releases/download/v0.25.0/Solr-v0.25.0.zip \
+      -o BlockPlus.zip  https://github.com/Daniel-KM/Omeka-s-module-BlockPlus/releases/download/3.4.45/BlockPlus-3.4.45.zip \
+      -o ItemCarousel.zip https://github.com/omeka-s-modules/ItemCarouselBlock/releases/download/v1.4.1/ItemCarouselBlock-1.4.1.zip \
+      -o Redirector.zip https://github.com/Daniel-KM/Omeka-S-module-Redirector/releases/download/3.4.5/Redirector-3.4.5.zip \
     && for f in *.zip; do \
          name="${f%.zip}"; \
          unzip -q "$f" -d "modules"; \
@@ -76,6 +79,7 @@ RUN curl -Z --parallel-immediate -fSL \
        done
 
 # Themes
+COPY umd-lib-omeka-theme themes/umd-lib-omeka-theme
 RUN curl -Z --parallel-immediate -fSL \
       -o Bookshelf.zip    https://github.com/indic-archive/bookshelf/releases/download/v2.0.1/bookshelf-v2.0.1.zip \
       -o Centerrow.zip    https://github.com/omeka-s-themes/centerrow/releases/download/v1.8.5/centerrow-1.8.5.zip \

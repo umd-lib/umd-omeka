@@ -1,0 +1,3 @@
+[submodule "umd-lib-omeka-theme"]
+	path = umd-lib-omeka-theme
+	url = git@github.com:umd-lib/umd-lib-omeka-theme.git
