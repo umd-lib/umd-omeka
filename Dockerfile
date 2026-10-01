@@ -58,10 +58,10 @@ RUN curl -Z --parallel-immediate -fSL \
 
 # Modules
 RUN curl -Z --parallel-immediate -fSL \
-      -o Common.zip     https://github.com/Daniel-KM/Omeka-S-module-Common/releases/download/3.4.88/Common-3.4.88.zip \
+      -o Common.zip     https://github.com/Daniel-KM/Omeka-S-module-Common/releases/download/3.4.91/Common-3.4.91.zip \
       -o BulkImport.zip https://github.com/Daniel-KM/Omeka-S-module-Bulkimport/releases/download/3.4.65/BulkImport-3.4.65.zip \
-      -o Log.zip        https://github.com/Daniel-KM/Omeka-S-module-Log/releases/download/3.4.39/Log-3.4.39.zip \
-      -o Mapper.zip     https://github.com/Daniel-KM/Omeka-S-module-Mapper/releases/download/3.4.7/Mapper-3.4.7.zip \
+      -o Log.zip        https://github.com/Daniel-KM/Omeka-S-module-Log/releases/download/3.4.40/Log-3.4.40.zip \
+      -o Mapper.zip     https://github.com/Daniel-KM/Omeka-S-module-Mapper/releases/download/3.4.9/Mapper-3.4.9.zip \
       -o CSSEditor.zip  https://github.com/omeka-s-modules/CSSEditor/releases/download/v1.3.1/CSSEditor-1.3.1.zip \
       -o PageBlocks.zip https://github.com/ivyrze/omeka-s-module-pageblocks/releases/download/1.3/PageBlocks.zip \
       -o IiifServer.zip https://github.com/Daniel-KM/Omeka-S-module-IiifServer/releases/download/3.6.32/IiifServer-3.6.32.zip \
@@ -72,6 +72,8 @@ RUN curl -Z --parallel-immediate -fSL \
       -o BlockPlus.zip  https://github.com/Daniel-KM/Omeka-s-module-BlockPlus/releases/download/3.4.45/BlockPlus-3.4.45.zip \
       -o ItemCarousel.zip https://github.com/omeka-s-modules/ItemCarouselBlock/releases/download/v1.4.1/ItemCarouselBlock-1.4.1.zip \
       -o Redirector.zip https://github.com/Daniel-KM/Omeka-S-module-Redirector/releases/download/3.4.5/Redirector-3.4.5.zip \
+      -o CSVImport.zip  https://github.com/omeka-s-modules/CSVImport/releases/download/v2.6.2/CSVImport-2.6.2.zip \
+      -o SingleSignOn.zip https://github.com/Daniel-KM/Omeka-S-module-SingleSignOn/releases/download/3.4.29/SingleSignOn-3.4.29.zip \
     && for f in *.zip; do \
          name="${f%.zip}"; \
          unzip -q "$f" -d "modules"; \
